@@ -17,7 +17,7 @@ def generate_log(log_data=None):
         response = requests.get("https://jsonplaceholder.typicode.com/posts/1", timeout=5)
         if response.status_code == 200:
             api_title = response.json().get("title", "No title found")
-            if log_data:
+            if log_data and any("Task" in str(x) for x in log_data):
                 log_data.append(f"Fetched Post Title: {api_title}")
     except requests.RequestException:
         pass
